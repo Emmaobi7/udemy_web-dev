@@ -6,11 +6,13 @@ for(var i = 0; i < numOfButtons; i++) {
         var buttonClick = this.textContent;
         
         makeSound(buttonClick);
+        buttonAnimation(buttonClick);
     })
 }
 
 document.addEventListener('keypress', function(event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 
 function makeSound(key) {
@@ -53,4 +55,13 @@ function makeSound(key) {
         default:
             console.log('weird click')
     }
+}
+
+function buttonAnimation(currentKey) {
+    var activeKey = document.querySelector('.' + currentKey);
+    activeKey.classList.add('pressed');
+
+    setTimeout(function () {
+        activeKey.classList.remove('pressed');
+    }, 100)
 }
